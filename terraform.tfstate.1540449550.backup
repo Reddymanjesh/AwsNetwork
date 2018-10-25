@@ -1,0 +1,276 @@
+{
+    "version": 3,
+    "terraform_version": "0.10.6",
+    "serial": 29,
+    "lineage": "dbc79f96-f86e-40a6-ba8b-89e377fab9c2",
+    "modules": [
+        {
+            "path": [
+                "root"
+            ],
+            "outputs": {
+                "igw_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "igw-01124caa7d46cbdbd"
+                },
+                "routetable_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "rtb-04d39d40a0c858547"
+                },
+                "securitygroup_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "sg-034a3293d33f67ea5"
+                },
+                "subnet1_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "subnet-0bf42fdcc02b7f678"
+                },
+                "subnet2_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "subnet-035ed4729878851bc"
+                },
+                "vpc_id": {
+                    "sensitive": false,
+                    "type": "string",
+                    "value": "vpc-0c392944c435d1552"
+                }
+            },
+            "resources": {
+                "aws_internet_gateway.gw": {
+                    "type": "aws_internet_gateway",
+                    "depends_on": [
+                        "aws_vpc.main"
+                    ],
+                    "primary": {
+                        "id": "igw-01124caa7d46cbdbd",
+                        "attributes": {
+                            "id": "igw-01124caa7d46cbdbd",
+                            "tags.%": "1",
+                            "tags.Name": "Main VPC ID",
+                            "vpc_id": "vpc-0c392944c435d1552"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_main_route_table_association.a": {
+                    "type": "aws_main_route_table_association",
+                    "depends_on": [
+                        "aws_route_table.r",
+                        "aws_vpc.main"
+                    ],
+                    "primary": {
+                        "id": "rtbassoc-004778a404696958b",
+                        "attributes": {
+                            "id": "rtbassoc-004778a404696958b",
+                            "original_route_table_id": "rtb-0bdcf8eac805f9a47",
+                            "route_table_id": "rtb-04d39d40a0c858547",
+                            "vpc_id": "vpc-0c392944c435d1552"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_route_table.r": {
+                    "type": "aws_route_table",
+                    "depends_on": [
+                        "aws_internet_gateway.gw",
+                        "aws_vpc.main"
+                    ],
+                    "primary": {
+                        "id": "rtb-04d39d40a0c858547",
+                        "attributes": {
+                            "id": "rtb-04d39d40a0c858547",
+                            "propagating_vgws.#": "0",
+                            "route.#": "1",
+                            "route.1059237475.cidr_block": "0.0.0.0/0",
+                            "route.1059237475.egress_only_gateway_id": "",
+                            "route.1059237475.gateway_id": "igw-01124caa7d46cbdbd",
+                            "route.1059237475.instance_id": "",
+                            "route.1059237475.ipv6_cidr_block": "",
+                            "route.1059237475.nat_gateway_id": "",
+                            "route.1059237475.network_interface_id": "",
+                            "route.1059237475.vpc_peering_connection_id": "",
+                            "tags.%": "2",
+                            "tags.Name": "Main Route table",
+                            "tags.Owner": "Manjesh",
+                            "vpc_id": "vpc-0c392944c435d1552"
+                        },
+                        "meta": {},
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_security_group.allow_all": {
+                    "type": "aws_security_group",
+                    "depends_on": [
+                        "aws_vpc.main"
+                    ],
+                    "primary": {
+                        "id": "sg-034a3293d33f67ea5",
+                        "attributes": {
+                            "arn": "arn:aws:ec2:us-east-1:337720288168:security-group/sg-034a3293d33f67ea5",
+                            "description": "Allow all inbound traffic",
+                            "egress.#": "1",
+                            "egress.482069346.cidr_blocks.#": "1",
+                            "egress.482069346.cidr_blocks.0": "0.0.0.0/0",
+                            "egress.482069346.description": "",
+                            "egress.482069346.from_port": "0",
+                            "egress.482069346.ipv6_cidr_blocks.#": "0",
+                            "egress.482069346.prefix_list_ids.#": "0",
+                            "egress.482069346.protocol": "-1",
+                            "egress.482069346.security_groups.#": "0",
+                            "egress.482069346.self": "false",
+                            "egress.482069346.to_port": "0",
+                            "id": "sg-034a3293d33f67ea5",
+                            "ingress.#": "2",
+                            "ingress.3327237406.cidr_blocks.#": "1",
+                            "ingress.3327237406.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.3327237406.description": "For webserver",
+                            "ingress.3327237406.from_port": "80",
+                            "ingress.3327237406.ipv6_cidr_blocks.#": "0",
+                            "ingress.3327237406.prefix_list_ids.#": "0",
+                            "ingress.3327237406.protocol": "tcp",
+                            "ingress.3327237406.security_groups.#": "0",
+                            "ingress.3327237406.self": "false",
+                            "ingress.3327237406.to_port": "80",
+                            "ingress.3441192132.cidr_blocks.#": "1",
+                            "ingress.3441192132.cidr_blocks.0": "0.0.0.0/0",
+                            "ingress.3441192132.description": "For ssh",
+                            "ingress.3441192132.from_port": "22",
+                            "ingress.3441192132.ipv6_cidr_blocks.#": "0",
+                            "ingress.3441192132.prefix_list_ids.#": "0",
+                            "ingress.3441192132.protocol": "tcp",
+                            "ingress.3441192132.security_groups.#": "0",
+                            "ingress.3441192132.self": "false",
+                            "ingress.3441192132.to_port": "22",
+                            "name": "allow_all",
+                            "owner_id": "337720288168",
+                            "revoke_rules_on_delete": "false",
+                            "tags.%": "2",
+                            "tags.Name": "Terraform",
+                            "tags.Owner": "Manjesh",
+                            "vpc_id": "vpc-0c392944c435d1552"
+                        },
+                        "meta": {
+                            "e2bfb730-ecaa-11e6-8f88-34363bc7c4c0": {
+                                "create": 600000000000,
+                                "delete": 600000000000
+                            },
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_subnet.subnet1": {
+                    "type": "aws_subnet",
+                    "depends_on": [
+                        "aws_vpc.main"
+                    ],
+                    "primary": {
+                        "id": "subnet-0bf42fdcc02b7f678",
+                        "attributes": {
+                            "arn": "arn:aws:ec2:us-east-1:337720288168:subnet/subnet-0bf42fdcc02b7f678",
+                            "assign_ipv6_address_on_creation": "false",
+                            "availability_zone": "us-east-1a",
+                            "cidr_block": "10.0.0.0/25",
+                            "id": "subnet-0bf42fdcc02b7f678",
+                            "map_public_ip_on_launch": "false",
+                            "tags.%": "3",
+                            "tags.Name": "subnet1",
+                            "tags.Owner": "Manjesh",
+                            "tags.Zone": "us-east-1a",
+                            "vpc_id": "vpc-0c392944c435d1552"
+                        },
+                        "meta": {
+                            "e2bfb730-ecaa-11e6-8f88-34363bc7c4c0": {
+                                "create": 600000000000,
+                                "delete": 600000000000
+                            },
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_subnet.subnet2": {
+                    "type": "aws_subnet",
+                    "depends_on": [
+                        "aws_vpc.main"
+                    ],
+                    "primary": {
+                        "id": "subnet-035ed4729878851bc",
+                        "attributes": {
+                            "arn": "arn:aws:ec2:us-east-1:337720288168:subnet/subnet-035ed4729878851bc",
+                            "assign_ipv6_address_on_creation": "false",
+                            "availability_zone": "us-east-1b",
+                            "cidr_block": "10.0.0.128/25",
+                            "id": "subnet-035ed4729878851bc",
+                            "map_public_ip_on_launch": "false",
+                            "tags.%": "3",
+                            "tags.Name": "subnet2",
+                            "tags.Owner": "Manjesh",
+                            "tags.Zone": "us-east-1b",
+                            "vpc_id": "vpc-0c392944c435d1552"
+                        },
+                        "meta": {
+                            "e2bfb730-ecaa-11e6-8f88-34363bc7c4c0": {
+                                "create": 600000000000,
+                                "delete": 600000000000
+                            },
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                },
+                "aws_vpc.main": {
+                    "type": "aws_vpc",
+                    "depends_on": [],
+                    "primary": {
+                        "id": "vpc-0c392944c435d1552",
+                        "attributes": {
+                            "arn": "arn:aws:ec2:us-east-1:337720288168:vpc/vpc-0c392944c435d1552",
+                            "assign_generated_ipv6_cidr_block": "false",
+                            "cidr_block": "10.0.0.0/24",
+                            "default_network_acl_id": "acl-01346ef835e6cf93a",
+                            "default_route_table_id": "rtb-04d39d40a0c858547",
+                            "default_security_group_id": "sg-0ce5194391b1b9b96",
+                            "dhcp_options_id": "dopt-c7621bbc",
+                            "enable_classiclink": "false",
+                            "enable_classiclink_dns_support": "false",
+                            "enable_dns_hostnames": "false",
+                            "enable_dns_support": "true",
+                            "id": "vpc-0c392944c435d1552",
+                            "instance_tenancy": "default",
+                            "main_route_table_id": "rtb-04d39d40a0c858547",
+                            "tags.%": "1",
+                            "tags.Name": "MY VPC"
+                        },
+                        "meta": {
+                            "schema_version": "1"
+                        },
+                        "tainted": false
+                    },
+                    "deposed": [],
+                    "provider": ""
+                }
+            },
+            "depends_on": []
+        }
+    ]
+}
