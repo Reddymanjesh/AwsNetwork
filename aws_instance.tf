@@ -9,6 +9,18 @@ resource "aws_instance" "web_server" {
     device_index         = 0
   }
 
+  user_data = "${file("${var.bootstrap_path}")}"
+
+  //Initial attached volume change from default 8 to 11 gb
+  root_block_device {
+    volume_type = "gp2"
+    volume_size = 9
+  }
+
+  volume_tags {
+    Name = "my-instance-root"
+  }
+
   tags {
     Name  = "webserver"
     owner = "Manjesh"

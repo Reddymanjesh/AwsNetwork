@@ -21,3 +21,7 @@ output "subnet2_id" {
 output "securitygroup_id" {
   value = "${aws_security_group.allow_all.id}"
 }
+
+output "keyname" {
+  value = "${aws_key_pair.deployer.key_name}"
+}
